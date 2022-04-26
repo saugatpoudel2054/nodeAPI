@@ -1,16 +1,20 @@
-const http = require("http");
+const express = require("express");
+const app = express();
 
-const app = http.createServer((req, res) => {
-    console.log(req.method);
-    console.log(req.url);
-    if(req.method == 'GET' && req.url=='/'){
-        res.end('<h1>Home</h1>');
-    }else{
-        res.end('Homepage 2');
+const routes = require("./routes");
 
-    }
+
+//routes
+app.use(routes);
+
+//Error handling middleware
+app.use((err, req, res, next) => {
+    res.status(404).json({
+        result: null,
+        status: false,
+        msg: 'Not found'
+    });
 });
-
 app.listen(3001, 'localhost', (err) => {
     if(err){
         console.log('Error');
