@@ -1,19 +1,9 @@
 const router = require("express").Router();
+const HOMECONTROLLER = require('../controllers/home.controller');
+const home_controller = new HOMECONTROLLER();
 
-router.get("/", (req, res, next) => {
-    res.status(200).json({
-        result: "Welcome",
-        status: true,
-        msg: 'Home page'
-    });
-});
+router.get("/", home_controller.getHomePage);
 
-router.get("/about", (req, res, next) => {
-    res.status(200).json({
-        result: "About us",
-        status: true,
-        msg: 'About us'
-    });
-});
+router.get("/about", home_controller.getAboutPage);
 
 module.exports = router;

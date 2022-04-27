@@ -1,39 +1,13 @@
 let router = require('express').Router();
+let BrandController = require('../controllers/brand.controller');
+let brand_controller = new BrandController();
 
 router.route('/brand')
-    .get((req, res, next) => {
-        console.log("GET request called");
-        res.status(200).json({
-            result: "Brand page",
-            status: true,
-            msg: 'Brand page'
-        });
-    })
-    .post((req, res, next) => {
-        console.log("POST request called");
-        res.status(200).json({
-            result: "Brand page POST",
-            status: true,
-            msg: 'Brand page post'
-        });
-    })
+    .get(brand_controller.getBrand)
+    .post(brand_controller.postBrand)
 
 router.route('/brand/:id')
-    .get((req, res, next) => {
-        console.log("GET request called");
-        res.status(200).json({
-            result: "Brand page with id",
-            status: true,
-            msg: 'Brand page with id'
-        });
-    })
-    .post((req, res, next) => {
-        console.log("POST request called");
-        res.status(200).json({
-            result: "Brand page POST with id",
-            status: true,
-            msg: 'Brand page post with id'
-        });
-    })
+    .get(brand_controller.getIndividualBrand)
+    .post(brand_controller.postIndividualBrand)
 
 module.exports = router;
